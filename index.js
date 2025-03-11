@@ -13,7 +13,7 @@ const kafka = new Kafka({
 
 const producer = kafka.producer();
 const topic = process.env.KAFKA_TOPIC ;
-
+const key = 'static-key'; // Define key to avoid ReferenceError
 
 function getRandomJson() {
     return {
