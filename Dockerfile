@@ -1,23 +1,14 @@
-# Use an official Node.js image as the base
-FROM node:18-alpine
+# Use Node.js base image
+FROM node:18
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to leverage caching
-COPY package*.json ./
+# Create a script that logs and fails
+RUN echo 'console.log("Starting application..."); \
+console.log("Processing step 1..."); \
+console.log("Processing step 2..."); \
+console.log("Oh no! Something went wrong."); \
+process.exit(1);' > index.js
 
-# Install Node.js dependencies
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
-
-# Expose the application port (if required)
-# EXPOSE 3000 # Uncomment if the app uses a specific port
-
-# Set environment variables (optional, prefer .env for secrets)
-# ENV NODE_ENV=production
-
-# Specify the command to run the application
+# Run the app
 CMD ["node", "index.js"]
