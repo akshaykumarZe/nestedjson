@@ -1,14 +1,11 @@
-# Use Node.js base image
-FROM node:18
+# Use an official base image
+FROM alpine:3.18
 
-WORKDIR /app
-
-# Create a script that logs and fails
-RUN echo 'console.log("Starting application..."); \
-console.log("Processing step 1..."); \
-console.log("Processing step 2..."); \
-console.log("Oh no! Something went wrong."); \
-process.exit(1);' > index.js
-
-# Run the app
-CMD ["node", "index.js"]
+# Show some logs during build
+RUN echo "Starting build process..." && \
+    echo "Step 1: Installing dependencies" && \
+    sleep 1 && \
+    echo "Step 2: Doing some work" && \
+    sleep 1 && \
+    echo "Step 3: Simulating failure" && \
+    exit 1
